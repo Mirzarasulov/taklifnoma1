@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>A and X | Свадебное приглашение</title>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
+    <!-- ПОДКЛЮЧАЕМ ТЕ ЖЕ ШРИФТЫ, ЧТО В ВАШЕМ УЗБЕКСКОМ КОДЕ -->
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Alex+Brush&family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -22,10 +23,25 @@
             overflow-x: hidden;
         }
 
-        .script-text, .initials-large, .timer-number, .section-title, .welcome-text, .date-small, .info-text-top {
+        /* ===== ТОТ САМЫЙ СТИЛЬ ШРИФТА, ЧТО В ВАШЕМ НОВОМ КОДЕ ===== */
+        .script-text, .timer-number, .section-title, .welcome-text, .date-small, .info-text-top {
             font-family: 'Great Vibes', 'Parisienne', cursive;
             font-weight: 400;
             letter-spacing: 0.02em;
+        }
+        
+        /* ГЛАВНОЕ: ШРИФТ ДЛЯ A and X - ТАКОЙ ЖЕ, КАК В УЗБЕКСКОМ КОДЕ (Allura) */
+        .initials-large {
+            font-family: 'Allura', 'Alex Brush', 'Great Vibes', cursive;
+            font-size: 6.5rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, #5e3a2e, #9b6b58, #c9a06c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: 0.03em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+            line-height: 1.2;
         }
 
         .location-choice-btn, .timer-label, .open-btn, .close-invitation {
@@ -172,21 +188,13 @@
         }
         @keyframes premiumFadeUp { to { opacity: 1; transform: translateY(0); } }
         
-        .initials-large {
-            font-size: 6rem;
-            background: linear-gradient(135deg, #5e3a2e, #9b6b58, #c9a06c);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: 0.05em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
-        }
         .date-small {
-            font-size: 1.1rem;
+            font-family: 'Great Vibes', 'Parisienne', cursive;
+            font-size: 1.2rem;
             letter-spacing: 0.3em;
             text-transform: uppercase;
             color: #ae8774;
-            margin-top: 0.8rem;
+            margin-top: 0.5rem;
             font-weight: 400;
         }
         
@@ -485,10 +493,9 @@
     <div class="full-invitation" id="fullInvitation">
         <div class="close-invitation" id="closeInvitationBtn">✕</div>
         
-        <!-- ФОТО 1 (оставлено без изменений) -->
-        <img class="full-width-img" src="https://i.ibb.co/fGzfS3BL/1.jpg" alt="Свадебное фото">
+        <img class="full-width-img" src="https://i.postimg.cc/y8BLYLDS/2.png" alt="Свадебное фото">
         
-        <div class="info-text-top script-text">💍 16 мая 2026 · 16:30 💍<br>🌟 Дорогие гости, ждём вас на нашем торжестве! 🌟</div>
+        <div class="info-text-top script-text">💍 16 мая 2026 · 12:00 💍<br>🌟 Дорогие гости, ждём вас на нашем торжестве! 🌟</div>
         
         <div class="invite-card">
             <div class="section-title script-text">До нашей свадьбы</div>
@@ -501,13 +508,11 @@
             <div id="weddingDayMsg" style="display:none; text-align:center;" class="script-text">✨ Сегодня наш день! ✨</div>
         </div>
         
-        <!-- ===== ВТОРОЕ ФОТО (ЗАМЕНЕНО НА ВАШЕ НОВОЕ) ===== -->
         <div class="location-block">
             <img class="location-bg-img" src="https://i.ibb.co/8gkhtB6c/2.jpg" alt="Santini ресторан">
             <div class="overlay-dark"></div>
             <div class="location-content">
                 <div class="restaurant-logo">
-                    <!-- НОВОЕ ФОТО (2) -->
                     <img src="https://i.postimg.cc/XNTq9FL3/b6190852-0565-4dfe-9223-a36114fe7f67.png" alt="Santini Bar & Terrace">
                 </div>
                 <div class="location-buttons">
@@ -517,7 +522,6 @@
             </div>
         </div>
         
-        <!-- ФОТО 3 (оставлено без изменений) -->
         <img class="full-width-img" src="https://i.ibb.co/FLzzMSL4/3.jpg" alt="Свадебное фото 3">
         
         <div class="invite-card">
@@ -536,7 +540,7 @@
 </div>
 
 <script>
-    const weddingDate = new Date(2026, 4, 16, 16, 30, 0).getTime();
+    const weddingDate = new Date(2026, 4, 16, 12, 0, 0).getTime();
     
     function updateTimer() {
         const now = new Date().getTime();
