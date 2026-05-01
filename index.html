@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>A and X | Свадебное приглашение</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(145deg, #bcd9e8 0%, #d4eaf5 100%);
+            font-family: 'Jost', sans-serif;
+            font-weight: 300;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* КРАСИВЫЙ КАЛЛИГРАФИЧЕСКИЙ ШРИФТ ДЛЯ A and X */
+        @font-face {
+            font-family: 'Shelley Volante';
+            src: local('Shelley Volante'), local('ShelleyVolante'), url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        .script-text, .initials-large, .timer-number, .section-title, .gift-title, .welcome-text, .invitation-text, .date-small {
+            font-family: 'Great Vibes', 'Parisienne', 'Shelley Volante', 'AnastasiaScript', cursive;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* Обычный текст оставляем на Jost */
+        .info-text-top, .location-choice-btn, .timer-label, .open-btn, .close-invitation {
+            font-family: 'Jost', sans-serif;
+        }
+
+        .sky-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: radial-gradient(ellipse at 30% 40%, #c2e0f0 0%, #aad0e4 60%, #8bbfd8 100%);
+            pointer-events: none;
+            animation: skyBreathing 12s infinite alternate ease-in-out;
+        }
+        @keyframes skyBreathing {
+            0% { opacity: 0.85; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.02); }
+        }
+
+        .moon-glow {
+            position: fixed;
+            top: 5%;
+            right: 8%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(255,245,220,0.7), rgba(255,240,200,0.2) 60%, transparent 85%);
+            border-radius: 50%;
+            filter: blur(12px);
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 1;
+            animation: moonPulse 6s infinite alternate;
+        }
+        @keyframes moonPulse {
+            0% { opacity: 0.3; transform: scale(0.98); filter: blur(10px);}
+            100% { opacity: 0.7; transform: scale(1.05); filter: blur(15px);}
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+        .particles::before {
+            content: "";
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background-image: radial-gradient(circle, rgba(255,255,245,0.7) 1.2px, transparent 1.2px);
+            background-size: 70px 70px;
+            opacity: 0.4;
+            animation: floatStars 35s linear infinite;
+        }
+        @keyframes floatStars {
+            from { transform: translateY(0px) translateX(0px); }
+            to { transform: translateY(-140px) translateX(-40px); }
+        }
+
+        .cloud-layer {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.08));
+        }
+        .cloud-drift-1 { animation: floatCloud1 60s infinite alternate ease-in-out; }
+        .cloud-drift-2 { animation: floatCloud2 75s infinite alternate ease-in-out; }
+        .cloud-drift-3 { animation: floatCloud3 45s infinite alternate ease-in-out; }
+        .cloud-drift-4 { animation: floatCloud4 90s infinite alternate ease-in-out; }
+        .cloud-drift-5 { animation: floatCloud5 55s infinite alternate ease-in-out; }
+        
+        @keyframes floatCloud1 { 0% { transform: translateX(-8%) translateY(-2%) scale(1); } 100% { transform: translateX(8%) translateY(3%) scale(1.02); } }
+        @keyframes floatCloud2 { 0% { transform: translateX(5%) translateY(1%) scale(1); } 100% { transform: translateX(-5%) translateY(4%) scale(1.03); } }
+        @keyframes floatCloud3 { 0% { transform: translateX(-3%) translateY(-1%) scale(1); } 100% { transform: translateX(12%) translateY(2%) scale(1.01); } }
+        @keyframes floatCloud4 { 0% { transform: translateX(0%) translateY(0%) scale(1); } 100% { transform: translateX(-10%) translateY(5%) scale(1.04); } }
+        @keyframes floatCloud5 { 0% { transform: translateX(-5%) translateY(2%) scale(1); } 100% { transform: translateX(6%) translateY(-2%) scale(1.02); } }
+
+        .cloud-svg { width: 100%; height: 100%; display: block; }
+        .cloud-svg path { fill: #ffffff; opacity: 0.94; }
+        .cloud-1 { width: 820px; height: 520px; top: -12%; left: -25%; position: absolute; }
+        .cloud-2 { width: 950px; height: 580px; bottom: -18%; right: -30%; position: absolute; }
+        .cloud-3 { width: 720px; height: 440px; top: 8%; right: -15%; position: absolute; }
+        .cloud-4 { width: 880px; height: 540px; bottom: 5%; left: -35%; position: absolute; }
+        .cloud-5 { width: 650px; height: 400px; top: 42%; left: -5%; position: absolute; }
+
+        .white-glow { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 0; 
+            background: radial-gradient(circle at 40% 50%, rgba(255,245,230,0.2) 0%, rgba(255,245,230,0) 70%); 
+            pointer-events: none; 
+        }
+        
+        .opening-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 45% 35%, #fff5ec 0%, #ffeadc 100%);
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1), visibility 0.9s;
+            backdrop-filter: blur(2px);
+        }
+        .opening-overlay.hide { opacity: 0; visibility: hidden; }
+        
+        /* ФОТО НА ПЕРВОМ ЭКРАНЕ — МАКСИМАЛЬНО БОЛЬШОЕ */
+        .hero-photo {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.2), 0 0 0 15px rgba(255,245,235,0.9);
+            border: 4px solid rgba(255,255,245,1);
+            opacity: 0;
+            transform: scale(0.92);
+            animation: premiumFadeScale 0.9s ease forwards;
+        }
+        @keyframes premiumFadeScale { to { opacity: 1; transform: scale(1); } }
+        
+        .names-container {
+            text-align: center;
+            z-index: 160;
+            margin-bottom: 1.8rem;
+            opacity: 0;
+            transform: translateY(25px);
+            animation: premiumFadeUp 0.9s ease 0.15s forwards;
+        }
+        @keyframes premiumFadeUp { to { opacity: 1; transform: translateY(0); } }
+        
+        /* КРАСИВЫЙ ШРИФТ ДЛЯ A and X */
+        .initials-large {
+            font-size: 7rem;
+            font-family: 'Great Vibes', 'Parisienne', 'Shelley Volante', cursive;
+            background: linear-gradient(135deg, #5e3a2e, #9b6b58, #c9a06c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: 0.05em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+        .date-small {
+            font-size: 1.2rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #ae8774;
+            margin-top: 0.8rem;
+            font-weight: 400;
+            font-family: 'Great Vibes', 'Parisienne', cursive;
+        }
+        
+        .open-btn {
+            background: rgba(255,248,240,0.96);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(200,165,135,0.6);
+            padding: 1rem 2.8rem;
+            border-radius: 80px;
+            font-family: 'Jost', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #6e4c3c;
+            cursor: pointer;
+            z-index: 160;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            margin-top: 1rem;
+            opacity: 0;
+            transform: translateY(25px);
+            animation: premiumFadeUp 0.9s ease 0.3s forwards;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .open-btn:active { transform: scale(0.96); }
+        
+        .anim-cloud {
+            position: absolute;
+            background: radial-gradient(ellipse at 40% 45%, rgba(255,255,252,0.95) 0%, rgba(250,245,240,0.9) 100%);
+            border-radius: 65% 35% 70% 30% / 45% 55% 45% 55%;
+            filter: blur(4px);
+            opacity: 0;
+            transform: scale(0.6);
+            will-change: transform, opacity;
+            pointer-events: none;
+            transition: all 2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.05);
+        }
+        .anim-cloud-1 { width: 620px; height: 380px; top: -8%; left: -38%; }
+        .anim-cloud-2 { width: 720px; height: 450px; bottom: -8%; right: -45%; }
+        .anim-cloud-3 { width: 550px; height: 330px; top: 25%; left: 30%; }
+        .anim-cloud-4 { width: 680px; height: 410px; top: 52%; left: -35%; }
+        .anim-cloud-5 { width: 520px; height: 310px; top: -5%; right: -8%; }
+        
+        .full-invitation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fffef8;
+            z-index: 200;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s;
+        }
+        .full-invitation.open { opacity: 1; visibility: visible; }
+        
+        .close-invitation {
+            position: fixed;
+            top: 18px;
+            right: 18px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255,248,242,0.98);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 210;
+            border: 0.8px solid rgba(180,140,115,0.4);
+            color: #8b6b58;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+        }
+        
+        /* ФОТО ВНУТРИ — МАКСИМАЛЬНО КРУПНЫЕ */
+        .full-width-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+        
+        .info-text-top {
+            margin: 24px 20px 16px 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #6b4c35;
+            background: white;
+            padding: 16px 24px;
+            border-radius: 60px;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .location-block {
+            position: relative;
+            width: 100%;
+            display: block;
+            background: #1a1a1a;
+        }
+        
+        /* ФОНОВОЕ ФОТО РЕСТОРАНА — ПОЛНАЯ ШИРИНА */
+        .location-bg-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .overlay-dark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .location-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 86%;
+            max-width: 600px;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        /* ЛОГОТИП РЕСТОРАНА — МАКСИМАЛЬНО БОЛЬШОЙ (550px) */
+        .restaurant-logo {
+            width: 550px;
+            max-width: 95%;
+            margin: 0 auto 25px auto;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 80px;
+            padding: 28px 38px;
+            display: inline-block;
+        }
+        .restaurant-logo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 60px;
+        }
+        
+        .location-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .location-choice-btn {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            color: #b56238;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 17px;
+            padding: 14px 28px;
+            border-radius: 60px;
+            text-align: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .location-choice-btn:active { transform: scale(0.96); }
+        .location-choice-btn.yandex { background: #ffcc00; color: #000; }
+        .location-choice-btn.google { background: #4285f4; color: white; }
+        
+        .bottom-space {
+            height: 20px;
+            background: linear-gradient(135deg, #f9e0cf, #fadbc6);
+        }
+        
+        .music-controller {
+            position: fixed;
+            bottom: 25px;
+            right: 20px;
+            z-index: 250;
+            background: rgba(255,252,245,0.96);
+            backdrop-filter: blur(16px);
+            border-radius: 60px;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 0.6px solid rgba(200,165,135,0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .music-btn { background: none; border: none; font-size: 1.6rem; cursor: pointer; color: #b27760; display: flex; align-items: center; }
+        
+        .timer-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        .timer-cell {
+            text-align: center;
+            background: rgba(255,248,242,0.85);
+            padding: 1rem 1.2rem;
+            border-radius: 45px;
+            min-width: 90px;
+            backdrop-filter: blur(4px);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.02), 0 6px 12px rgba(0,0,0,0.03);
+        }
+        .timer-number {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #4f2d27;
+        }
+        .timer-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            color: #a17363;
+            text-transform: uppercase;
+            font-family: 'Jost', sans-serif;
+        }
+        
+        .invite-card {
+            background: rgba(255,253,250,0.92);
+            backdrop-filter: blur(8px);
+            border-radius: 50px;
+            padding: 1.8rem;
+            margin: 1.2rem 1rem;
+            border: 0.6px solid rgba(210,170,145,0.3);
+            box-shadow: 0 20px 30px -15px rgba(0,0,0,0.08);
+        }
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #5a3a2e;
+            margin-bottom: 1rem;
+        }
+        .welcome-text {
+            text-align: center;
+            font-size: 1.3rem;
+            line-height: 1.5;
+            color: #5a3e36;
+        }
+        
+        @media (max-width: 550px) {
+            .location-content { width: 90%; max-width: 450px; }
+            .location-choice-btn { font-size: 14px; padding: 10px 18px; gap: 5px; }
+            .restaurant-logo { width: 360px; padding: 15px 22px; border-radius: 60px; }
+            .initials-large { font-size: 4rem; }
+            .timer-number { font-size: 2rem; }
+            .timer-cell { min-width: 70px; padding: 0.7rem; }
+            .hero-photo { width: 280px; height: 280px; }
+            .section-title { font-size: 2rem; }
+            .welcome-text { font-size: 1.1rem; }
+            .date-small { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <div class="sky-bg"></div>
+    <div class="white-glow"></div>
+    <div class="moon-glow"></div>
+    <div class="particles"></div>
+    
+    <div class="cloud-layer cloud-drift-1 cloud-1"><svg class="cloud-svg" viewBox="0 0 820 520"><path d="M170,260 Q110,180 200,155 Q250,85 355,115 Q445,70 560,120 Q650,85 720,160 Q810,140 830,230 Q890,280 810,360 Q870,440 780,480 Q680,530 560,490 Q470,540 360,500 Q270,540 190,490 Q110,520 70,440 Q25,395 55,320 Q20,270 170,260Z" fill="#ffffff" opacity="0.96"/></svg></div>
+    <div class="cloud-layer cloud-drift-2 cloud-2"><svg class="cloud-svg" viewBox="0 0 950 580"><path d="M210,320 Q145,225 255,195 Q315,120 440,150 Q550,95 680,145 Q780,105 860,185 Q960,165 985,265 Q1055,320 965,405 Q1040,495 940,540 Q825,600 695,555 Q590,615 475,570 Q375,615 285,555 Q190,590 135,505 Q78,455 115,370 Q72,315 210,320Z" fill="#ffffff" opacity="0.96"/></svg></div>
+    <div class="cloud-layer cloud-drift-3 cloud-3"><svg class="cloud-svg" viewBox="0 0 720 440"><path d="M150,225 Q108,155 195,135 Q245,75 345,105 Q425,65 515,108 Q595,82 645,150 Q730,135 748,215 Q795,260 740,320 Q780,390 720,420 Q655,465 580,440 Q505,475 435,445 Q365,475 310,435 Q258,455 215,400 Q172,420 145,360 Q112,335 138,278 Q108,245 150,225Z" fill="#ffffff" opacity="0.96"/></svg></div>
+    <div class="cloud-layer cloud-drift-4 cloud-4"><svg class="cloud-svg" viewBox="0 0 880 540"><path d="M195,290 Q130,200 230,175 Q288,102 405,135 Q510,82 625,135 Q730,95 805,175 Q910,160 935,255 Q1010,310 920,400 Q1000,490 890,535 Q770,600 640,555 Q540,610 425,570 Q320,610 230,560 Q140,590 85,505 Q35,455 75,370 Q30,310 195,290Z" fill="#ffffff" opacity="0.96"/></svg></div>
+    <div class="cloud-layer cloud-drift-5 cloud-5"><svg class="cloud-svg" viewBox="0 0 650 400"><path d="M145,210 Q105,145 190,128 Q235,72 325,98 Q400,60 485,100 Q558,75 605,138 Q685,122 702,195 Q750,240 695,295 Q735,365 670,395 Q595,435 520,410 Q445,445 380,412 Q315,440 262,398 Q210,415 175,360 Q142,380 120,325 Q90,298 112,248 Q85,220 145,210Z" fill="#ffffff" opacity="0.96"/></svg></div>
+
+    <div class="opening-overlay" id="openingOverlay">
+        <div class="anim-cloud anim-cloud-1"></div>
+        <div class="anim-cloud anim-cloud-2"></div>
+        <div class="anim-cloud anim-cloud-3"></div>
+        <div class="anim-cloud anim-cloud-4"></div>
+        <div class="anim-cloud anim-cloud-5"></div>
+        <img class="hero-photo" id="heroPhoto" src="https://i.postimg.cc/5NvzBMZm/k21k2.webp" alt="A and X">
+        <div class="names-container">
+            <div class="initials-large">A and X</div>
+            <div class="date-small">16 MAY 2026</div>
+        </div>
+        <button class="open-btn" id="openBtn">Open Invitation</button>
+    </div>
+
+    <div class="full-invitation" id="fullInvitation">
+        <div class="close-invitation" id="closeInvitationBtn">✕</div>
+        
+        <img class="full-width-img" src="https://i.ibb.co/fGzfS3BL/1.jpg" alt="Свадебное фото">
+        
+        <div class="info-text-top">💍 16 мая 2026 · 16:30 💍<br>🌟 Дорогие гости, ждём вас на нашем торжестве! 🌟</div>
+        
+        <div class="invite-card">
+            <div class="section-title script-text">До нашей свадьбы</div>
+            <div id="timerGrid" class="timer-grid">
+                <div class="timer-cell"><div class="timer-number script-text" id="daysCount">00</div><div class="timer-label">ДНЕЙ</div></div>
+                <div class="timer-cell"><div class="timer-number script-text" id="hoursCount">00</div><div class="timer-label">ЧАСОВ</div></div>
+                <div class="timer-cell"><div class="timer-number script-text" id="minutesCount">00</div><div class="timer-label">МИНУТ</div></div>
+                <div class="timer-cell"><div class="timer-number script-text" id="secondsCount">00</div><div class="timer-label">СЕКУНД</div></div>
+            </div>
+            <div id="weddingDayMsg" style="display:none; text-align:center;" class="script-text">✨ Сегодня наш день! ✨</div>
+        </div>
+        
+        <div class="location-block">
+            <img class="location-bg-img" src="https://i.ibb.co/8gkhtB6c/2.jpg" alt="Santini ресторан">
+            <div class="overlay-dark"></div>
+            <div class="location-content">
+                <div class="restaurant-logo">
+                    <img src="https://i.ibb.co/w1vkFxB/faf74fec-287e-4283-8650-61a103e15416.png" alt="Santini Bar & Terrace">
+                </div>
+                <div class="location-buttons">
+                    <a href="https://yandex.uz/maps/-/CPSe7R5R" class="location-choice-btn yandex" target="_blank">🗺️ Яндекс Карты</a>
+                    <a href="https://maps.app.goo.gl/nM75CKfD9mjxDS7s5" class="location-choice-btn google" target="_blank">🗺️ Google Карты</a>
+                </div>
+            </div>
+        </div>
+        
+        <img class="full-width-img" src="https://i.ibb.co/FLzzMSL4/3.jpg" alt="Свадебное фото 3">
+        
+        <div class="invite-card">
+            <div class="welcome-text script-text">✨ Пусть этот день станет началом прекрасной истории ✨<br>Будем рады разделить его с вами!</div>
+        </div>
+        <div class="bottom-space"></div>
+    </div>
+
+    <div style="position: fixed; bottom: -200px; left: -200px; width: 1px; height: 1px; opacity: 0; pointer-events: none;">
+        <iframe id="youtubeMusic" width="100%" height="100" src="https://www.youtube.com/embed/ivrumxRUz_Y?enablejsapi=1&autoplay=0&controls=0&showinfo=0&rel=0" allow="autoplay; encrypted-media"></iframe>
+    </div>
+    
+    <div class="music-controller" id="musicController">
+        <button class="music-btn" id="musicToggleBtn">🎵</button>
+    </div>
+</div>
+
+<script>
+    const weddingDate = new Date(2026, 4, 16, 16, 30, 0).getTime();
+    
+    function updateTimer() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+        
+        if (distance <= 0) {
+            document.getElementById('timerGrid').style.display = 'none';
+            document.getElementById('weddingDayMsg').style.display = 'block';
+            return;
+        }
+        document.getElementById('timerGrid').style.display = 'flex';
+        document.getElementById('weddingDayMsg').style.display = 'none';
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (86400000)) / 3600000);
+        const minutes = Math.floor((distance % 3600000) / 60000);
+        const seconds = Math.floor((distance % 60000) / 1000);
+        
+        document.getElementById('daysCount').innerHTML = days < 10 ? '0' + days : days;
+        document.getElementById('hoursCount').innerHTML = hours < 10 ? '0' + hours : hours;
+        document.getElementById('minutesCount').innerHTML = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById('secondsCount').innerHTML = seconds < 10 ? '0' + seconds : seconds;
+    }
+    updateTimer();
+    setInterval(updateTimer, 1000);
+    
+    let player = null;
+    let playerReady = false;
+    let isPlaying = false;
+    const musicBtn = document.getElementById('musicToggleBtn');
+    
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+    window.onYouTubeIframeAPIReady = function() {
+        player = new YT.Player('youtubeMusic', {
+            events: {
+                onReady: (event) => {
+                    playerReady = true;
+                    player.setVolume(50);
+                },
+                onStateChange: (event) => {
+                    if (event.data === YT.PlayerState.PLAYING) {
+                        isPlaying = true;
+                        musicBtn.innerHTML = '🔊';
+                    } else if (event.data === YT.PlayerState.PAUSED) {
+                        isPlaying = false;
+                        musicBtn.innerHTML = '🎵';
+                    }
+                }
+            }
+        });
+    };
+    
+    function playMusic() {
+        if (!playerReady || !player) {
+            setTimeout(() => playMusic(), 300);
+            return;
+        }
+        player.playVideo();
+        isPlaying = true;
+        musicBtn.innerHTML = '🔊';
+    }
+    
+    function pauseMusic() {
+        if (playerReady && player) player.pauseVideo();
+        isPlaying = false;
+        musicBtn.innerHTML = '🎵';
+    }
+    
+    function toggleMusic() {
+        if (isPlaying) pauseMusic();
+        else playMusic();
+    }
+    musicBtn.addEventListener('click', toggleMusic);
+    
+    const openingOverlay = document.getElementById('openingOverlay');
+    const fullInvitation = document.getElementById('fullInvitation');
+    const closeInvBtn = document.getElementById('closeInvitationBtn');
+    const openBtn = document.getElementById('openBtn');
+    let isOpening = false;
+    
+    openBtn.addEventListener('click', () => {
+        if (isOpening) return;
+        isOpening = true;
+        
+        setTimeout(() => playMusic(), 150);
+        
+        const animClouds = document.querySelectorAll('.anim-cloud');
+        const directions = [
+            'translateX(-700px) translateY(-320px) scale(3.2)',
+            'translateX(780px) translateY(350px) scale(3.3)',
+            'translateX(600px) translateY(-420px) scale(3.0)',
+            'translateX(-650px) translateY(480px) scale(3.1)',
+            'translateX(520px) translateY(-280px) scale(2.9)'
+        ];
+        animClouds.forEach((cloud, idx) => {
+            setTimeout(() => {
+                cloud.style.opacity = '1';
+                cloud.style.transform = directions[idx];
+                setTimeout(() => cloud.style.opacity = '0', 1900);
+            }, idx * 40);
+        });
+        
+        setTimeout(() => {
+            openingOverlay.classList.add('hide');
+            fullInvitation.classList.add('open');
+        }, 2100);
+    });
+    
+    closeInvBtn.addEventListener('click', () => fullInvitation.classList.remove('open'));
+</script>
+</body>
+</html>
