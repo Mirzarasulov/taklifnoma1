@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>A and X | Свадебное приглашение</title>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -22,13 +22,13 @@
             overflow-x: hidden;
         }
 
-        .script-text, .initials-large, .timer-number, .section-title, .gift-title, .welcome-text, .invitation-text, .date-small {
-            font-family: 'Great Vibes', 'Parisienne', 'Shelley Volante', 'AnastasiaScript', cursive;
+        .script-text, .initials-large, .timer-number, .section-title, .welcome-text, .date-small, .info-text-top {
+            font-family: 'Great Vibes', 'Parisienne', cursive;
             font-weight: 400;
             letter-spacing: 0.02em;
         }
 
-        .info-text-top, .location-choice-btn, .timer-label, .open-btn, .close-invitation {
+        .location-choice-btn, .timer-label, .open-btn, .close-invitation {
             font-family: 'Jost', sans-serif;
         }
 
@@ -281,10 +281,10 @@
         .info-text-top {
             margin: 24px 20px 16px 20px;
             text-align: center;
-            font-size: 18px;
+            font-size: 22px;
             color: #6b4c35;
             background: white;
-            padding: 16px 24px;
+            padding: 20px 24px;
             border-radius: 60px;
             font-weight: 500;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
@@ -325,7 +325,6 @@
             z-index: 2;
         }
         
-        /* ===== ЛОГОТИП - БЕЗ РАМКИ, НА ВСЮ ШИРИНУ ===== */
         .restaurant-logo {
             width: 100%;
             margin: 0 auto 20px auto;
@@ -335,7 +334,6 @@
             width: 100%;
             height: auto;
             display: block;
-            /* Убираем ВСЕ рамки и скругления */
             border-radius: 0;
             border: none;
             box-shadow: none;
@@ -453,6 +451,7 @@
             .section-title { font-size: 2rem; }
             .welcome-text { font-size: 1.1rem; }
             .date-small { font-size: 0.9rem; }
+            .info-text-top { font-size: 18px; padding: 16px 20px; }
         }
     </style>
 </head>
@@ -486,9 +485,10 @@
     <div class="full-invitation" id="fullInvitation">
         <div class="close-invitation" id="closeInvitationBtn">✕</div>
         
+        <!-- ФОТО 1 (оставлено без изменений) -->
         <img class="full-width-img" src="https://i.ibb.co/fGzfS3BL/1.jpg" alt="Свадебное фото">
         
-        <div class="info-text-top">💍 16 мая 2026 · 16:30 💍<br>🌟 Дорогие гости, ждём вас на нашем торжестве! 🌟</div>
+        <div class="info-text-top script-text">💍 16 мая 2026 · 16:30 💍<br>🌟 Дорогие гости, ждём вас на нашем торжестве! 🌟</div>
         
         <div class="invite-card">
             <div class="section-title script-text">До нашей свадьбы</div>
@@ -501,13 +501,14 @@
             <div id="weddingDayMsg" style="display:none; text-align:center;" class="script-text">✨ Сегодня наш день! ✨</div>
         </div>
         
+        <!-- ===== ВТОРОЕ ФОТО (ЗАМЕНЕНО НА ВАШЕ НОВОЕ) ===== -->
         <div class="location-block">
             <img class="location-bg-img" src="https://i.ibb.co/8gkhtB6c/2.jpg" alt="Santini ресторан">
             <div class="overlay-dark"></div>
             <div class="location-content">
-                <!-- ЛОГОТИП БЕЗ РАМКИ, НА ВСЮ ШИРИНУ -->
                 <div class="restaurant-logo">
-                    <img src="https://i.postimg.cc/kXhYgJvq/faf74fec-287e-4283-8650-61a103e15416.png" alt="Santini Bar & Terrace">
+                    <!-- НОВОЕ ФОТО (2) -->
+                    <img src="https://i.postimg.cc/XNTq9FL3/b6190852-0565-4dfe-9223-a36114fe7f67.png" alt="Santini Bar & Terrace">
                 </div>
                 <div class="location-buttons">
                     <a href="https://yandex.uz/maps/-/CPSe7R5R" class="location-choice-btn yandex" target="_blank">🗺️ Яндекс Карты</a>
@@ -516,6 +517,7 @@
             </div>
         </div>
         
+        <!-- ФОТО 3 (оставлено без изменений) -->
         <img class="full-width-img" src="https://i.ibb.co/FLzzMSL4/3.jpg" alt="Свадебное фото 3">
         
         <div class="invite-card">
